@@ -11,21 +11,23 @@ const App = () => {
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
 
-  const [character1, setCharacter1] = useState([]);
-  const [character2, setCharacter2] = useState([]);
-  const [character3, setCharacter3] = useState([]);
-  const [character4, setCharacter4] = useState([]);
-  const [characters, setCharacters] = useState([]);
+  const [character, setCharacter] = useState( [ { } ] )
+  // const [character1, setCharacter1] = useState([]);
+  // const [character2, setCharacter2] = useState([]);
+  // const [character3, setCharacter3] = useState([]);
+  // const [character4, setCharacter4] = useState([]);
+  // const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
     axios.get('https://swapi.co/api/people/')
       .then(res => {
         console.log(res);
-        setCharacter1(res.data.results[0]);
-        setCharacter2(res.data.results[1]);
-        setCharacter3(res.data.results[2]);
-        setCharacter4(res.data.results[3]);
-        setCharacters(res.data.results)
+        // setCharacter1(res.data.results[0]);
+        // setCharacter2(res.data.results[1]);
+        // setCharacter3(res.data.results[2]);
+        // setCharacter4(res.data.results[3]);
+        // setCharacters(res.data.results)
+        setCharacter(res.data.results);
       });
   }, []);
 
@@ -33,7 +35,13 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="Header">React Wars</h1>
-      <div class="character-card"><CharacterCard name={character1.name}
+      <div class="character-card"><CharacterCard name={character[0].name}
+        birth_year={character[0].birth_year}
+        gender={character[0].gender}
+        hair_color={character[0].hair_color}
+        eye_color={character[0].eye_color}
+        skin_color={character[0].skin_color} /></div>
+      {/* <div class="character-card"><CharacterCard name={character1.name}
         birth_year={character1.birth_year}
         gender={character1.gender}
         hair_color={character1.hair_color}
@@ -51,12 +59,12 @@ const App = () => {
         hair_color={character3.hair_color}
         eye_color={character3.eye_color}
         skin_color={character3.skin_color} /></div>
-        <div class="character-card"><CharacterCard name={character4.name}
+      <div class="character-card"><CharacterCard name={character4.name}
         birth_year={character4.birth_year}
         gender={character4.gender}
         hair_color={character4.hair_color}
         eye_color={character4.eye_color}
-        skin_color={character4.skin_color} /></div>
+        skin_color={character4.skin_color} /></div> */}
     </div>
   );
 
